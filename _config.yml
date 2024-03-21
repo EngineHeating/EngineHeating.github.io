@@ -11,6 +11,17 @@ author: AyaseEli
 language: zh-CN
 timezone: 'Asia/Shanghai'
 
+#图片预加载
+lazyload:
+  enable: true
+  loadingImg: /img/loading.gif
+
+pangu: # 在网页中所有的中文字和半形的英文、数字、符号之间插入空白
+  enable: true
+  field: site # site/post
+
+
+
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: http://example.com

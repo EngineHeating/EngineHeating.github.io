@@ -2,6 +2,9 @@
 title: QCustomPlot库的使用——绘制曲线
 date: 2024-03-20 17:44:12
 tags:
+  - C++
+  - Qt
+  - QCustomPlot
 ---
 
 # 1. 配置库

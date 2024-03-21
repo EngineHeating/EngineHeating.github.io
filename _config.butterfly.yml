@@ -31,12 +31,31 @@ local_search:
     input_placeholder: Search for Posts
     hits_empty: "We didn't find any results for the search: ${query}" # 如果没有查到内容相关内容显示
 
-#Favicon(网站图)
+#Favicon(网站图标)
 favicon: https://raw.githubusercontent.com/EngineHeating/MyPicGo/main/62645521-649fe700-b91a-11e9-9e30-9c3499598deb.png
 
+#avatar(头像)
 avatar:
   img: https://raw.githubusercontent.com/EngineHeating/picgo_2/main/8H7%256%603EG2IA6Q3O)MVPR%60K.png #图片路径
   effect: false #头像会一直转圈  
+
+# The banner image of home page
+index_img: https://raw.githubusercontent.com/EngineHeating/picgo_2/main/Libra_3.3.3_Loadinscreen.jpg
+
+#侧边栏卡片
+card_author:
+    enable: true
+    description:
+    button:
+      enable: true
+      icon: fab fa-github
+      text: Follow Me #按钮文字
+      link: https://github.com/EngineHeating #可以放上自己的github地址
+
+nav:
+  logo: https://raw.githubusercontent.com/EngineHeating/MyPicGo/main/62645521-649fe700-b91a-11e9-9e30-9c3499598deb.png  #文件放在source/img/下面，不设置则只显示名称
+  display_title: true   #名称是否显示
+  fixed: true # 设置导航栏固定位置，不滚动
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
