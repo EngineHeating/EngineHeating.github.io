@@ -83,3 +83,49 @@ int main()
 	} while (m < 1000);
 }
 ```
+
+### 练习 1.7
+> 创建一个txt文件，输入两行文字并保存。编写一个程序，打开该文本文件，将其中每个字都读取到一个vector<string>对象中。遍历vector，将内容显示到cout。利用泛型算法sort()，对所有文字排序，再将排序结果输出至另一文件。
+```CPP
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+	ifstream infile("D:\\CODE\\CPPProject\\Data\\Exercise 1.6_IN.txt");
+	ofstream outfile("D:\\CODE\\CPPProject\\Data\\Exercise 1.6_OUT.txt");
+	if (! infile)
+	{
+		cout << "Can't find infile." << endl;
+	}
+	if (! outfile)
+	{
+		cout << "Can't find outfile." << endl;
+	}
+
+	vector<string> PrintInformation;
+	string word;
+	while (infile >> word)
+	{
+		PrintInformation.push_back(word);
+	}
+	for (int i = 0; i < PrintInformation.size(); i++)
+	{
+		cout << PrintInformation[i];
+	}
+	cout << endl;
+
+	sort(PrintInformation.begin(), PrintInformation.end());
+	for (int j = 0; j < PrintInformation.size(); j++)
+	{
+		outfile << PrintInformation[j] << ' ';
+	}
+	outfile << endl;
+
+	return 0;
+}
+```
