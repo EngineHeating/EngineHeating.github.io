@@ -11,6 +11,33 @@ author: John Doe
 language: en
 timezone: ''
 
+menu:
+  主页: / || fas fa-home
+  博文 || fa fa-graduation-cap:
+    分类: /categories/ || fa fa-archive
+    标签: /tags/ || fa fa-tags
+    归档: /archives/ || fa fa-folder-open
+  生活 || fas fa-list:
+    分享: /shuoshuo/ || fa fa-comments-o
+    相册: /photos/ || fa fa-camera-retro
+    音乐: /music/ || fa fa-music
+    影视: /movies/ || fas fa-video
+  关于笔者: /about/ || fas fa-heart  
+
+# Local search
+local_search:
+  enable: true
+  labels:
+    input_placeholder: Search for Posts
+    hits_empty: "We didn't find any results for the search: ${query}" # 如果没有查到内容相关内容显示
+
+#Favicon(网站图)
+favicon: https://raw.githubusercontent.com/EngineHeating/MyPicGo/main/62645521-649fe700-b91a-11e9-9e30-9c3499598deb.png
+
+avatar:
+  img: https://raw.githubusercontent.com/EngineHeating/picgo_2/main/8H7%256%603EG2IA6Q3O)MVPR%60K.png #图片路径
+  effect: false #头像会一直转圈  
+
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: http://example.com
