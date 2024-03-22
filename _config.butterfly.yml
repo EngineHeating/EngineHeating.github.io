@@ -57,6 +57,16 @@ nav:
   display_title: true   #名称是否显示
   fixed: true # 设置导航栏固定位置，不滚动
 
+# toc (目錄)
+toc:
+  post: true
+  page: false
+  number: false
+  expand: true # 是否展开
+  style_simple: false # for post
+  scroll_percent: true
+
+
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: http://example.com
