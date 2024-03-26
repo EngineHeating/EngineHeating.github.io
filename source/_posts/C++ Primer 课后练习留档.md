@@ -129,3 +129,66 @@ int main()
 	return 0;
 }
 ```
+
+## 第二章 面向过程的编程风格
+### 练习 2.1
+> 编写一个函数，该函数返回斐波那契数列中用户指定的某个位置的元素。改写main()使其允许用户不断输入位置值直到用户希望停止为止。
+```CPP
+#include <iostream>
+using namespace std;
+
+bool fibon_elem(int pos, int& elem);
+
+int main()
+{
+	int pos;
+	bool more = true;
+	char change;
+
+	while (more)
+	{
+		cout << "Please enter a position: ";
+		cin >> pos;
+
+		int elem;
+		if (fibon_elem(pos, elem))
+		{
+			cout << "element # " << pos
+				<< " is " << elem << endl;
+		}
+		else cout << "Sorry.Could not calculate element # "
+			<< pos << endl;
+
+		cout << "try again?(Y/N)";
+		cin >> change;
+		
+		if ((change != 'Y') && (change != 'y'))
+		{
+			more = false;
+		}
+	}
+
+
+}
+
+bool fibon_elem(int pos, int& elem)
+{
+	// 检查位置是否合理
+	if (pos <= 0 || pos >= 1024)
+	{
+		elem = 0;
+		return false;
+	}
+	//位置为1、2时elem值为1
+	elem = 1;
+	int n2 = 1, n1 = 1;
+	for (int i = 3; i <= pos; i++)
+	{
+		elem = n2 + n1;
+		n2 = n1;
+		n1 = elem;
+	}
+
+	return true;
+}
+```
