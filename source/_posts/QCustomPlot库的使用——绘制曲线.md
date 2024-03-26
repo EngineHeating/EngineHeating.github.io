@@ -9,20 +9,20 @@ tags:
 
 # 1. 配置库
 ## 1.1 下载与预配置
-- 下载压缩包，然后吧.cpp和.h文件放入工程目录中
-- 在mainwindow.h中引用下载的.h文件
+- 下载压缩包，然后吧 .cpp 和 .h 文件放入工程目录中
+- 在 mainwindow.h 中引用下载的 .h 文件
 ``` C++
 #include "qcustomplot.h"
 ```
-- Q4.0以上版本需要在.pro文件中加入：
+- Q4.0以上版本需要在 .pro 文件中加入：
 ```
 QT += printsupport
 ```
-- 在UI设计界面，拖入**Widget**,然后右键->提升为...然后在弹出的对话框中，在**提升为类名**那里输入QCustomPlot，然后头文件那里会自动填充为qcustomplot.h。单击添加按钮将QCustomPlot加入提升类列表中，最后单击提升就可以了。
+- 在UI设计界面，拖入 **Widget**,然后右键->提升为...然后在弹出的对话框中，在**提升为类名**那里输入 QCustomPlot，然后头文件那里会自动填充为 qcustomplot.h。单击添加按钮将 QCustomPlot 加入提升类列表中，最后单击提升就可以了。
   
  ![20230405212452](https://raw.githubusercontent.com/EngineHeating/MyPicGo/main/20230405212452.png) 
 
- 可见，类中已经显示为QCustomPlot。预配置完成，**这个可以用来作为坐标轴画图。**
+ 可见，类中已经显示为 QCustomPlot。预配置完成，**这个可以用来作为坐标轴画图。**
 
 ## 1.2 第一个demo：画一个简单抛物线
 代码如下：

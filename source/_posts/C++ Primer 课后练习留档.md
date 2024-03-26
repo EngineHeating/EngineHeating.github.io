@@ -8,7 +8,7 @@ tags:
 # C++ Primer/Essential C++ 课后练习留档
 ## 第1章开始
 ### 练习1.3
-> 编写程序，在标准输出上打印Hello World.
+> 编写程序，在标准输出上打印 Hello World.
 ```CPP
 #include <iostream>
 int main()
@@ -85,7 +85,7 @@ int main()
 ```
 
 ### 练习 1.7
-> 创建一个txt文件，输入两行文字并保存。编写一个程序，打开该文本文件，将其中每个字都读取到一个vector<string>对象中。遍历vector，将内容显示到cout。利用泛型算法sort()，对所有文字排序，再将排序结果输出至另一文件。
+> 创建一个txt文件，输入两行文字并保存。编写一个程序，打开该文本文件，将其中每个字都读取到一个 vector<string>对象中。遍历 vector，将内容显示到 cout。利用泛型算法 sort()，对所有文字排序，再将排序结果输出至另一文件。
 ```CPP
 #include <iostream>
 #include <fstream>
