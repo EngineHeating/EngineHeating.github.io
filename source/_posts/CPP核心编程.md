@@ -159,3 +159,37 @@ void display_message(const string&, int, int);
 将一组实现代码不同但工作内容相似的函数加以重载，可以让函数用户更容易使用这些函数，也使得我们不需要对类似函数进行多个命名。
 
 ### 2.7 定义模板函数
+如果我们希望程序代码的主体不变，仅仅改变其中用到的数据类型，可以通过**函数模板**(function template)将参数列表中的指定参数的类型信息抽离出来。例如：
+```CPP
+template <typename elemType>
+void display_message(const string& msg, const vector<elemType>& vec)
+{
+	cont << msg;
+	for (int i = 0; i < vec.size; i++)
+	{
+		elemType t = vec[i];
+		cout << t << ' ';
+	}
+}
+```
+
+使用函数模板时，只需将 elemType 换为对应的类型。
+```CPP
+vector<string> ivec;
+string msg;
+display_message(msg, ivec);
+```
+
+### 2.8 函数指针
+现在假如有一组“通过vector返回六种数列”的函数如：`const vector<int> *fibon_seq(int size)`，现在需要实现找到指定数列的指定数值的函数。如果我们不想再定义6个不同的函数，那就需要使用**函数指针**实现。
+```CPP
+const vector<int>* (*seq_ptr)(int)
+```
+函数指针必须指明函数的返回类型`const vector<int>*`和参数列表`int`。（*seq_ptr)中 \*表示是一个指针变量，seq_ptr 是这个变量的名称。
+
+要取得函数的地址，直接赋值函数的名称即可。
+
+### 2.9 设定头文件
+把函数声明放在头文件中，以供多个程序文件调用。
+
+对象的定义需要前加关键字 **extern**。
