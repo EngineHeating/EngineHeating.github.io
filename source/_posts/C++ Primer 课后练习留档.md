@@ -192,3 +192,134 @@ bool fibon_elem(int pos, int& elem)
 	return true;
 }
 ```
+
+### 练习 2.2
+> Pentagonal数列的求值公式是$P(n)=\frac{n(3n-1)}{2}$,借此产生1，5，12，22，35等值。定义一函数，将产生的元素放到用户传入的vector中，元素个数由用户指定。注意检查元素个数的有效性。再编写一个函数，能将给定vector的所有元素一一打印出来。此函数第二参数接受一个表示数列类型的字符串。最后编写main()测试上述两个函数。
+```CPP
+//练习写的，和参考答案有出入
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+
+const vector<int>* pent_seq(int size)
+{
+	const int max_size = 1024;
+	static vector<int> elems;
+	if (size <= 0 || size > max_size)
+	{
+		cerr << " pent_seq(): oops: invalid size: " << size << " --can't fulfill request.\n";
+		return 0;
+	}
+	//如果size小于elems.size就不用重新计算了
+	for (int i = elems.size(); i < size; i++)
+	{
+		elems.push_back((i + 1) * (3 * (i + 1) - 1) / 2);
+	}
+	return &elems;
+}
+
+void display_message(const vector<int>& vec, const string &vectype)
+{
+	cout << vectype;
+	for (int i = 0; i < vec.size(); i++)
+	{
+		cout << vec[i] << ' ';
+	}
+}
+
+int main()
+{
+	const string vect = "int : ";
+	const vector<int>* pseq = pent_seq(5);
+	pseq = pent_seq(7);
+	display_message(*pseq, vect);
+}
+
+```
+
+### 练习 2.3
+> 将练习 2.2 中的 Pentagonal 数列求值函数拆分为两个函数，其中之一为 inline, 用来检验元素个数是否合理。如果合理且尚未被计算便执行第二个函数，执行求值工作。
+```CPP
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+inline bool is_size_ok(vector<int>& elems, int size);
+void pent_seq(vector<int>& elems, int size);
+
+
+inline bool is_size_ok(vector<int>& elems, int size)
+{
+	const int max_size = 1024;
+	if (size <= 0 || size > max_size)
+	{
+		cerr << " pent_seq(): oops: invalid size: " << size << " --can't fulfill request.\n";
+		return false;
+	}
+
+	if (size < elems.size())
+	{
+		pent_seq(elems, size);
+	}
+	return true;
+}
+
+void pent_seq(vector<int>& elems, int size)
+{
+
+	//如果size小于elems.size就不用重新计算了
+	for (int i = elems.size(); i < size; i++)
+	{
+		elems.push_back((i + 1) * (3 * (i + 1) - 1) / 2);
+	}
+}
+
+void display_message(const vector<int>& vec, const string &vectype)
+{
+	cout << vectype;
+	for (int i = 0; i < vec.size(); i++)
+	{
+		cout << vec[i] << ' ';
+	}
+}
+
+int main()
+{
+	vector<int> elems;
+	const string vect = "int : ";
+	pent_seq(elems, 5);
+	display_message(elems, vect);
+}
+```
+
+### 练习 2.4
+> 写一个函数，以局部静态的 vector 存储数列元素，返回一个 const 指针指向该 vector。若 vector 的大小小于指定元素个数，就扩充 vector 大小。接下来在事先第二个函数，接受一个位置值，返回该位置上的元素。最后编写 main 测试。
+```CPP
+const vector<int>* save_vec(int size)
+{
+	static vector<int> vect;
+	for (int i = vect.size(); i < size; i++)
+	{
+		vect.push_back((i + 1) * (3 * (i + 1) - 1) / 2);
+	}
+	return &vect;
+}
+
+int pent_elem(int pos)
+{
+	const vector<int>* pseq = save_vec(pos);
+	if (!pseq)
+	{
+		return 0;
+	}
+	return (*pseq)[pos - 1];
+}
+int main()
+{
+	int a = pent_elem(6);
+	cout << '\n' << "The number is " << a << endl;
+}
+```
