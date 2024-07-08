@@ -4,6 +4,29 @@
   
     
     <entry>
+      <title>MTALAB 中 commsrc.combinedjitter 构造组合抖动生成器对象</title>
+      <link href="/2024/07/08/Matlab%E6%B7%BB%E5%8A%A0%E7%BB%84%E5%90%88%E6%8A%96%E5%8A%A8%E5%87%BD%E6%95%B0/"/>
+      <url>/2024/07/08/Matlab%E6%B7%BB%E5%8A%A0%E7%BB%84%E5%90%88%E6%8A%96%E5%8A%A8%E5%87%BD%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="MTALAB- 中 -commsrc-combinedjitter- 构造组合抖动生成器对象"><a href="#MTALAB- 中 -commsrc-combinedjitter- 构造组合抖动生成器对象" class="headerlink" title="MTALAB 中 commsrc.combinedjitter 构造组合抖动生成器对象"></a>MTALAB 中 commsrc.combinedjitter 构造组合抖动生成器对象</h1><h2 id="1- 两种函数"><a href="#1- 两种函数" class="headerlink" title="1. 两种函数"></a>1. 两种函数</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">combJitt = commsrc.combinedjitter</span><br><span class="line">combJitt = commsrc.combinedjitter(Name,Value)</span><br></pre></td></tr></table></figure><h2 id="2- 定义"><a href="#2- 定义" class="headerlink" title="2. 定义"></a>2. 定义</h2><p>combJitt &#x3D; commsrc.combinedjitter 构造一个默认的组合抖动生成器对象 combJitt，所有的抖动组件都被禁用。</p><p>使用该对象可生成抖动样本，其中包括随机、周期性和狄拉克分量的任意组合。</p><hr><p>combJitt &#x3D; commsrc.combinedjitter(Name,Value)创建一个组合抖动生成器对象，并将指定的属性 Name 设置为指定的 Value。可以任意顺序指定附加的名称 - 值对参数，如(Name1,Value1，…，NameN,ValueN)。</p><h2 id="3- 案例"><a href="#3- 案例" class="headerlink" title="3. 案例"></a>3. 案例 </h2><h3 id="3-1- 生成 500 个由随机和周期抖动组成的抖动样本"><a href="#3-1- 生成 500 个由随机和周期抖动组成的抖动样本" class="headerlink" title="3.1 生成 500 个由随机和周期抖动组成的抖动样本"></a>3.1 生成 500 个由随机和周期抖动组成的抖动样本</h3><p> 创建一个 commsrc.combinedjitter 对象，配置为应用随机和周期性抖动组件的组合。使用名称 - 值对来启用 RandomJitter 和 PeriodicJitter，并分配抖动设置。设置随机抖动的标准差为 2e-4 秒，周期抖动的幅度为 5e-4 秒，周期抖动的频率为 2hz。</p><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% step1: 创建一个 commsrc.combinedjitter 对象，对抖动成分进行设置</span></span><br><span class="line">numSamples = <span class="number">500</span>;</span><br><span class="line">combJitt = commsrc.combinedjitter(...</span><br><span class="line">    <span class="string">&#x27;RandomJitter&#x27;</span>,<span class="string">&#x27;on&#x27;</span>, ...</span><br><span class="line">    <span class="string">&#x27;RandomStd&#x27;</span>,<span class="number">2e-4</span>, ...</span><br><span class="line">    <span class="string">&#x27;PeriodicJitter&#x27;</span>,<span class="string">&#x27;on&#x27;</span>, ...</span><br><span class="line">    <span class="string">&#x27;PeriodicAmplitude&#x27;</span>,<span class="number">5e-4</span>, ...</span><br><span class="line">    <span class="string">&#x27;PeriodicFrequencyHz&#x27;</span>,<span class="number">200</span>);  </span><br><span class="line"><span class="comment">% step2: 使用生成方法 generate 创建组合抖动样本。</span></span><br><span class="line">y = generate(combJitt,numSamples);</span><br><span class="line">x = [<span class="number">0</span>:numSamples<span class="number">-1</span>];</span><br><span class="line"><span class="comment">% step3: 绘制抖动样本</span></span><br><span class="line"><span class="built_in">plot</span>(x/combJitt.SamplingFrequency,y);</span><br><span class="line">xlabel(<span class="string">&#x27;Time (seconds)&#x27;</span>);</span><br><span class="line">ylabel(<span class="string">&#x27;Jitter (seconds)&#x27;</span>);</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 学习笔记 </tag>
+            
+            <tag> MATLAB </tag>
+            
+            <tag> 研究生 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>常频时钟恢复方式原理</title>
       <link href="/2024/06/11/%E5%B8%B8%E9%A2%91%E6%97%B6%E9%92%9F%E6%81%A2%E5%A4%8D%E6%96%B9%E5%BC%8F%E5%8E%9F%E7%90%86/"/>
       <url>/2024/06/11/%E5%B8%B8%E9%A2%91%E6%97%B6%E9%92%9F%E6%81%A2%E5%A4%8D%E6%96%B9%E5%BC%8F%E5%8E%9F%E7%90%86/</url>
