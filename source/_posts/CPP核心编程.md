@@ -60,6 +60,17 @@ int &b = a; //给a起一个别名为b
 #### 1.4.2 引用做函数参数及返回值
 **作用**：函数传参时，可以用引用让形参修饰实参，简化指针修改实参。
 
+```cpp
+int *find(const vector<int> &vec, int value)//vec代表对vec这个vector的引用，避免拷贝整个vector
+{
+    for(int ix = 0; ix < vec.size; ++ix)
+    {
+        if(vec[ix] == value)
+            return &vec[ix];
+        return 0;
+    }
+}
+```
 **注意**：不要返回局部变量引用
 
 ## 2 面向过程的编程风格
@@ -214,6 +225,62 @@ array[2];
 
 **list** 也是一个容器，其连接方式为双向链表。
 
-但由于list存储的元素并不处在一片连续的空间，假设要实现find()函数，list容器无法实现。由此引出**Iterator泛型指针**概念，把底层指针的处理放在此抽象层中，让用户无须直接面对指针操作。
+但由于list存储的元素并不处在一片连续的空间，假设要实现find()函数，原有的指针操作在list容器无法实现。由此引出**Iterator泛型指针**概念，把底层指针的处理放在此抽象层中，让用户无须直接面对指针操作。
 
 ### 3.2 了解Iterator(泛型指针)
+泛型指针（iterator）（又称迭代器）很像指针，但又有一些新特性。我们需要`iterator`有如下特性：
+- 迭代对象（某个容器）的类型，这可以决定如何访问下一个元素。（比如vector和list的区别）
+- iteraotr所指的元素类型，这可以决定iterator提领操作（*）的返回值。
+
+定义iterator：
+```CPP
+vector<string> svec;
+vector<string>::iterator iter = svec.begin();   //双冒号代表此iterator是位于string vector定义内的嵌套类型。
+```
+对于对const vector进行遍历操作：
+```CPP
+const vector<string> cs_vec;
+vector<string>::const_iterator iter = cs_vec.begin();
+```
+欲通过iterator取得元素值，和指针一样进行提领操作即可。
+```CPP
+cout << *iter;
+```
+
+根据以上规则，重写display函数，使iterator代替subscript（下标）（ps:就是数组后的[]）:
+```CPP
+template <typename elemType> void display(const vector<elemType>& vec, ostream& os)
+{
+	vector<elemType>::const_iterator iter = vec.begin();
+	vector<elemType>::const_iterator end_it = vec.end();
+
+	for (; iter != end_it; ++iter)
+	{
+		os << *iter << ' ';
+		os << endl;
+	}
+}
+```
+现在重新实现`find()`,使其同时支持两种形式：一对指针，或是一对指向某种容器的iterator.
+
+> 假如用户希望赋予equaily运算符不同的意义，需要增强find()的弹性。为此，下一步要将现有的find()演化为泛型算法。
+
+### 3.3 所有容器的共通操作
+共通操作：
+- `==`和`！=`
+- `=`
+- `empty()`
+- `size()`
+- `clear()`
+
+除此之外，每个容器还包括：`begin()`和`end()`;`insert()`和`erase()`.
+
+### 3.4 使用顺序性容器
+顺序性容器主要有`vector`,`list`,`deque`（双端队列，类似于vector,但可对头元素进行插入、删除操作）。
+
+上三种容器均有两个特别操作函数：`push_back()`和`pop_back()`.用来在末端插入/删除一个元素。其中list和deque还有针对头部的`push_front()`和`pop_front`
+
+### 3.5 使用泛型算法
+使用算法需要包含algorithm头文件。
+
+### 3.6 如何设计一个泛型算法
