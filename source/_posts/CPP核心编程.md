@@ -228,7 +228,7 @@ array[2];
 但由于list存储的元素并不处在一片连续的空间，假设要实现find()函数，原有的指针操作在list容器无法实现。由此引出**Iterator泛型指针**概念，把底层指针的处理放在此抽象层中，让用户无须直接面对指针操作。
 
 ### 3.2 了解Iterator(泛型指针)
-泛型指针（iterator）（又称迭代器）很像指针，但又有一些新特性。我们需要`iterator`有如下特性：
+泛型指针（iterator）（又称迭代器）很像指针，但又有一些新特性。我们需要`iterator`在被定义时有看到如下特性：
 - 迭代对象（某个容器）的类型，这可以决定如何访问下一个元素。（比如vector和list的区别）
 - iteraotr所指的元素类型，这可以决定iterator提领操作（*）的返回值。
 
@@ -237,7 +237,7 @@ array[2];
 vector<string> svec;
 vector<string>::iterator iter = svec.begin();   //双冒号代表此iterator是位于string vector定义内的嵌套类型。
 ```
-对于对const vector进行遍历操作：
+对于对const vector进行遍历操作：注意const_iterator指针值是可变的，但其指向的元素不可变。
 ```CPP
 const vector<string> cs_vec;
 vector<string>::const_iterator iter = cs_vec.begin();
@@ -284,3 +284,13 @@ template <typename elemType> void display(const vector<elemType>& vec, ostream& 
 使用算法需要包含algorithm头文件。
 
 ### 3.6 如何设计一个泛型算法
+> 新任务是，在原有的找到小于某个数的函数的基础上，能使用户指定不同的比较操作。为此需要将“比较操作”参数化。
+
+`function object` :某种class的实例对象，这类class对function call运算符做了重载操作（？），**可使function object被当作一般函数来使用。**
+`function object Adapter`:函数对象适配器（？）
+
+### 3.7 使用Map
+Map类型是多个一对值，即key-value的组合。
+
+### 3.8 使用Set
+Set类型一群key组合而成。
