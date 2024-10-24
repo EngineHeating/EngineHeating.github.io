@@ -287,10 +287,36 @@ template <typename elemType> void display(const vector<elemType>& vec, ostream& 
 > 新任务是，在原有的找到小于某个数的函数的基础上，能使用户指定不同的比较操作。为此需要将“比较操作”参数化。
 
 `function object` :某种class的实例对象，这类class对function call运算符做了重载操作（？），**可使function object被当作一般函数来使用。**
+
 `function object Adapter`:函数对象适配器（？）
+
+这里以less<type>为例，取代了原本的函数指针，使用时`less<int>`和bind1st/bind2nd结合使用，如bind2nd会指定值(是val?)绑定至第二操作数。
+```CPP
+vector<int> filter_ver2(const vector<int>& vec, int val,const less<int>& lt)
+{
+	vector<int> nvec;
+	vector<int>::const_iterator iter = vec.begin();
+
+	while ((iter = find_if(iter, vec.end(), bind2nd(lt, val))) != vec.end())
+	{
+		nvec.push_back(*iter);
+		iter++;
+	}
+	return nvec;
+}
+```
+
 
 ### 3.7 使用Map
 Map类型是多个一对值，即key-value的组合。
 
 ### 3.8 使用Set
 Set类型一群key组合而成。
+
+### 3.9 如何使用Iterator Inserter
+这节主要讲了三个insertion adapter，用来取代assignment（赋值）操作符，如back_inserter，他用push.back()函数取代赋值操作符，这样就不用一开始就指定好目标容器（可能是用于存放复制后的数据）。
+
+### 3.10 使用iostream Iterator
+这节主要讲了两个有关输入输出的Iterator:istream_iterator和ostream_iterator，可支持单一类型的元素读取和写入。
+
+对于输入，其last **iterator**不指定对象即可，这可以代表last是“要读取的最后一个元素的下一位置”。
