@@ -320,3 +320,34 @@ Set类型一群key组合而成。
 这节主要讲了两个有关输入输出的Iterator:istream_iterator和ostream_iterator，可支持单一类型的元素读取和写入。
 
 对于输入，其last **iterator**不指定对象即可，这可以代表last是“要读取的最后一个元素的下一位置”。
+
+## 4 基于对象的编程风格
+### 4.1 如何实现一个Class
+本节以实现一个Stack类为引子介绍如何写一个最简单的Class.实现一个Class主要分为两部分：.h文件和.cpp文件。其中，.h文件包含对该Class的定义；.cpp包含了member function的具体定义。（当然也可以在class主体内定义）
+
+Stack Class定义的主体壳子如下：
+```CPP
+class Stack
+{
+public:
+	bool push(const string&);
+	bool pop(string& elem);
+	bool peek(string& elem);
+	
+	bool empty();
+	bool full();
+
+	int size() { return _stack.size(); }
+
+	bool find(const string &value);
+
+	int count(const string &value);
+private:
+	vector<string> _stack;//习惯上给private变量加下划线
+};
+```
+在.cpp定义member function时，要注意使用如下语法：
+```CPP
+Stack::pop(); //::类作用域解析符告诉了编译器这是Stack class的一个member。
+```
+
