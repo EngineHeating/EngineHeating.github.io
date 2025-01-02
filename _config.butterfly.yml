@@ -21,8 +21,7 @@ menu:
     分享: /shuoshuo/ || fa fa-comments-o
     相册: /photos/ || fa fa-camera-retro
     音乐: /music/ || fa fa-music
-    影视: /movies/ || fas fa-video
-  关于笔者: /about/ || fas fa-heart  
+    影视: /movies/ || fas fa-video 
 
 # Local search
 local_search:
@@ -103,12 +102,14 @@ relative_link: false
 future: true
 syntax_highlighter: highlight.js
 highlight_theme: mac
+highlight_shrink: false
 highlight:
   line_number: true
   auto_detect: false
   tab_replace: ''
   wrap: true
   hljs: false
+highlight_height_limit: 200 # unit: px
 prismjs:
   preprocess: true
   line_number: true
