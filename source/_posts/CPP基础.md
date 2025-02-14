@@ -1,6 +1,8 @@
 ---
 title: CPP基础
 date: 2024-03-20 17:31:17
+categories:
+    - CPP
 tags:
     - 学习笔记
     - C++

@@ -1,6 +1,8 @@
 ---
 title: QCustomPlot库的使用——绘制曲线
 date: 2024-03-20 17:44:12
+categories:
+  - 信号
 tags:
   - C++
   - Qt

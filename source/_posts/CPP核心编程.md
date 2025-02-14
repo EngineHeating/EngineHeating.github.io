@@ -1,6 +1,8 @@
 ---
 title: CPP核心编程
 date: 2024-03-20 14:39:17
+categories:
+	- CPP
 tags:
     - 学习笔记
     - C++

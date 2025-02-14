@@ -1,6 +1,8 @@
 ---
 title: MTALAB 中 commsrc.combinedjitter 构造组合抖动生成器对象
 date: 2024-07-08 19:17:17
+categories:
+    - 信号
 tags:
     - 学习笔记
     - MATLAB

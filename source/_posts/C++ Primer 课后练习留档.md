@@ -1,6 +1,8 @@
 ---
 title: C++课后练习留档
 date: 2024-03-20 17:32:11
+categories:
+	- CPP
 tags:
 	- 学习笔记
 	- C++
