@@ -102,7 +102,7 @@ relative_link: false
 future: true
 syntax_highlighter: highlight.js
 highlight_theme: mac
-highlight_shrink: false
+highlight_shrink: true
 highlight:
   line_number: true
   auto_detect: false
