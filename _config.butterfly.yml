@@ -164,3 +164,7 @@ deploy:
   type: 'git'
   repo: https://github.com/EngineHeating/EngineHeating.github.io.git
   branch: master
+
+# 图片大图查看
+medium_zoom: false
+fancybox: true
